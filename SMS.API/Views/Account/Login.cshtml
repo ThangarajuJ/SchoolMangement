@@ -1,0 +1,97 @@
+﻿@model SMS.API.Models.LoginModel
+    
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    @*<img src="~/Images/favicon.png" />*@
+    <!-- Normalize CSS -->
+    <link href="~/CSS/normalize.css" rel="stylesheet" />
+    <!-- Main CSS -->
+    <link href="~/CSS/main.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
+    <!-- Fontawesome CSS -->
+    <link href="~/CSS/all.min.css" rel="stylesheet" />
+    <!-- Flaticon CSS -->
+    <link href="~/fonts/flaticon.css" rel="stylesheet" />
+    <!-- Animate CSS -->
+    <link href="~/CSS/animate.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/style.css" rel="stylesheet" />
+    <!-- Modernize js -->
+    <script src="~/JS/modernizr-3.6.0.min.js"></script>
+    <!-- Account CSS -->
+    <link href="~/CSS/Account.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <!-- Login Page Start Here -->
+    <div class="login-page-wrap">
+        <div class="login-page-content">
+            <div class="login-box">
+                <div class="item-logo">
+                    <img src="~/Images/logo-icon.png" alt="school name" />School management
+                </div>
+                @using (Ajax.BeginForm("Login", "Account", "",new AjaxOptions { HttpMethod ="Post"}, new { @class = "login-form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Username)
+                        @Html.TextBoxFor(m => m.Username, new { @placeholder = "Enter usrename", @class = "form-control" })
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "forgot-btn" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Enter password", @class = "form-control" })
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        @Html.ValidationMessageFor(m => m.Password, "Password required", new { @class = "forgot-btn" })
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between">
+                        <div class="form-check">
+                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input", @id = "remember-me" })
+                            @Html.LabelFor(m => m.RememberMe, new { @for = "remember-me", @class = "form-check-label" })
+                        </div>
+                        <div>
+                            @Html.ActionLink("Forget Password?", "ForgetPassword", null, new { @class = "forgot-btn" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="login-btn">Login</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Login Page End Here -->
+    <!-- jquery-->
+    <script src="~/JS/jquery-3.3.1.min.js"></script>
+    <!-- Plugins js -->
+    <script src="~/JS/plugins.js"></script>
+    <!-- Popper js -->
+    <script src="~/JS/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/JS/bootstrap.min.js"></script>
+    <!-- Scroll Up Js -->
+    <script src="~/JS/jquery.scrollUp.min.js"></script>
+    <!-- Custom Js -->
+    <script src="~/JS/main.js"></script>
+    <!-- jquery ajax unobtrusive -->
+    https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js
+</body>
+
+</html>
